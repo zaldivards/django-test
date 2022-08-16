@@ -22,7 +22,7 @@ class Rentals(models.Model):
     movie_id = models.ForeignKey(Movie, null=False, unique=True, 
                                  on_delete=models.CASCADE)
     
-    movie_id = models.ForeignKey(get_user_model(), null=False, unique=True,
+    user_id = models.ForeignKey(get_user_model(), null=False, unique=True,
                                  on_delete=models.CASCADE)
     
     copies = models.IntegerField(null=True, default=1)
