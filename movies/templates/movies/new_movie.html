@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block form %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/movies/css/save.css' %}"/>
+<form method="post" class="container">
+
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+
+    <input type="submit" class="btn btn-primary_" value="Add"/>
+
+</form>
+{% endblock form %}
