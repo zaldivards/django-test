@@ -26,17 +26,29 @@ input[type="number"]:focus {
 .btn-primary_ {
     background-color: dodgerblue;
     color: white;
-}
-
-form input:not(.primary_),
-form select:not(#id_max_date_year, #id_max_date_month, #id_max_date_day) {
-    padding: 1em;
-    width: 40%;
-    display: flex;
-
+    width: auto;
 }
 
 form>input[type="submit"] {
     padding: .5em !important;
-    width: 10%;
+}
+
+#notification {
+    position: fixed;
+    top: 10%;
+    right: 5%;
+    z-index: 9999;
+    border: 1px solid transparent;
+
+}
+
+.fa-times {
+    color: red !important;
+}
+
+.errors {
+    list-style-type: none !important;
+    padding: 0;
+    margin: 0;
+    color: red;
 }

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% block btn_text %}Add new lend report{% endblock btn_text %}
+{% block btn_text %}
+    Add new lend report
+{% endblock btn_text %}
 {% block content %}
     {% load static %}
     <h1>Lends report</h1>
@@ -18,15 +20,15 @@
                 </thead>
                 <tbody >
                     {% for lend in object_list %}
-                        <tr>
+                        <tr lend-id="{{ lend.rental_id }}">
                             <td>{{ lend.movie_id.name }}</td>
                             <td>{{ lend.user_id }}</td>
                             <td>{{ lend.copies }}</td>
                             <td>{{ lend.max_date }}</td>
-                            <td class="text-center pointer">
+                            <td class="text-center pointer remove_marker">
                                 <i class="fas fa-times"></i>
                             </td>
-                            <td class="text-center pointer">
+                            <td class="text-center pointer edit_marker">
                                 <i class="fas fa-edit"></i>
                             </td>
                         </tr>
@@ -38,13 +40,9 @@
 {% endblock content %}
 {% block js %}
     <script type="text/javascript">
-    $(document).ready( function () {
-        $('#myTable').DataTable();
-    });
-
     $('#create-btn').click(() => {
         location.href = "{% url 'movies:lends_creation' %}"
     })
-
     </script>
+    <script src="{% static 'js/extra_actions.js' %}"></script>
 {% endblock js %}

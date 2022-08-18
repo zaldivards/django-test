@@ -2,24 +2,19 @@ form {
     height: auto;
 }
 
-#id_tags {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
+/* form p{
+    text-align: center;
+} */
+
+main div {
+    width: 50%;
+    margin: auto;
 }
 
-#id_tags li {
-    position: relative;
-    display: inline;
-    background-color: #ccc;
-    margin: 0 0.5em 0.5em 0;
-    padding: 0.5em;
-
-}
-
-#id_tags li:hover {
-    background-color: dodgerblue;
+form input[type='text'],
+form input[type='number'],
+form select:not(#id_max_date_year, #id_max_date_month, #id_max_date_day) {
+    width: 100%;
 }
 
 #id_max_date_year,
@@ -28,6 +23,22 @@ form {
     margin-right: .5em;
 }
 
-select{
+select {
     border: 1px solid transparent;
+}
+
+.errors {
+    list-style-type: none !important;
+    padding: 0;
+    margin: 0;
+    color: red;
+}
+
+
+form input:not(.primary_),
+form select:not(#id_max_date_year, #id_max_date_month, #id_max_date_day) {
+    padding: 1em;
+
+    display: flex;
+
 }

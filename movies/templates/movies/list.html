@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% block btn_text %}Add new movie{% endblock btn_text %}
+{% block btn_text %}
+    Add new movie
+{% endblock btn_text %}
 {% block content %}
     {% load static %}
     <h1>Available movies</h1>
@@ -11,22 +13,24 @@
                         <th scope="col">Movie</th>
                         <th scope="col">Synopsis</th>
                         <th scope="col">copies</th>
+                        <th scope="col">Rented copies</th>
                         <th scope="col">In the store since</th>
                         <th class="text-center">Remove</th>
                         <th class="text-center">Edit</th>
                     </tr>
                 </thead>
-                <tbody >
+                <tbody>
                     {% for movie in object_list %}
-                        <tr>
+                        <tr movie-id="{{ movie.movie_id }}">
                             <td>{{ movie.name }}</td>
                             <td>{{ movie.synopsis }}</td>
                             <td>{{ movie.copies }}</td>
+                            <td>{{ movie.rented_copies }}</td>
                             <td>{{ movie.created_at }}</td>
-                            <td class="text-center pointer">
+                            <td class="text-center pointer remove_marker">
                                 <i class="fas fa-times"></i>
                             </td>
-                            <td class="text-center pointer">
+                            <td class="text-center pointer edit_marker">
                                 <i class="fas fa-edit"></i>
                             </td>
                         </tr>
@@ -38,13 +42,9 @@
 {% endblock content %}
 {% block js %}
     <script type="text/javascript">
-    $(document).ready(() => {
-        $('#myTable').DataTable();
-    } );
-
     $('#create-btn').click(() => {
         location.href = "{% url 'movies:movies_creation' %}"
     })
-    
     </script>
+    <script src="{% static 'js/extra_actions.js' %}"></script>
 {% endblock js %}

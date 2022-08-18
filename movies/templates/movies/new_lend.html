@@ -1,15 +1,13 @@
 {% extends "base.html" %}
-
-{% block form %}
-{% load static %}
-<link rel="stylesheet" href="{% static '/movies/css/save.css' %}"/>
-<form method="post" class="container">
-
-    {% csrf_token %}
-    
-    {{ form.as_p }}
-
-    <input type="submit" class="btn btn-primary_" value="Add report"/>
-
-</form>
-{% endblock form %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/movies/css/save.css' %}"/>
+    <div>
+        <h1>New rental report</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary_" value="Add report"/>
+        </form>
+    </div>
+{% endblock content %}

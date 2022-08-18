@@ -3,13 +3,11 @@
     {% load static %}
     <link rel="stylesheet" href="{% static '/movies/css/save.css' %}"/>
     <div>
-        <h1>New movie</h1>
-        <form method="post" >
+        <h1>Edit rental report</h1>
+        <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <p>
-                <input type="submit" class="btn btn-primary_" value="Add"/>
-            </p>
+            <input type="submit" class="btn btn-primary_" value="Update"/>
         </form>
     </div>
 {% endblock content %}
