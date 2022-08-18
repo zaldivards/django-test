@@ -5,7 +5,7 @@ from django.db import models, transaction
 
 
 class Movie(models.Model):
-    
+
     movie_id = models.AutoField(primary_key=True)
     loans = models.ManyToManyField(get_user_model(), through='Rentals',
                                    related_name='borrowings')
@@ -21,7 +21,7 @@ class Movie(models.Model):
 
 
 class RentalsManager(models.Manager):
-    
+
     @transaction.atomic()
     def remove_lend(self, id_: int):
         try:
@@ -39,28 +39,29 @@ class RentalsManager(models.Manager):
                 movie.save()
             except Exception as e:
                 raise e
-            
-    
+
     def get_rented_copies(self, movie_id) -> int:
         try:
-            return self.filter(movie_id_id=movie_id).aggregate(rented_copies=models.Sum('copies'))
+            return (self.filter(movie_id_id=movie_id)
+                    .aggregate(rented_copies=models.Sum('copies')))
         except Exception as e:
             print(e)
             raise
 
+
 class Rentals(models.Model):
-    
+
     rental_id = models.AutoField(primary_key=True)
-    
+
     movie_id = models.ForeignKey(Movie, null=False, db_column='movie_id',
                                  on_delete=models.CASCADE)
-    
-    user_id = models.ForeignKey(get_user_model(), null=False, db_column='user_id',
-                                 on_delete=models.CASCADE)
-    
+
+    user_id = models.ForeignKey(get_user_model(), null=False,
+                                db_column='user_id',
+                                on_delete=models.CASCADE)
+
     copies = models.IntegerField(null=True, default=1)
-    
+
     max_date = models.DateField(null=False)
-    
-    
+
     objects = RentalsManager()

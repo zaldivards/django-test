@@ -5,7 +5,7 @@ from django.views.decorators.http import require_http_methods
 from django.views.generic import CreateView, ListView, UpdateView
 
 from .forms import LendsForm, MovieFrom
-from .mixins import ManageErrorResponseMixin, MockRequestMixin
+from .mixins import ManageResponseErrorMixin, MockRequestMixin
 from .models import Movie, Rentals
 
 EDIT_MESSAGE = 'Successfully updated!'
@@ -18,7 +18,8 @@ class MoviesList(ListView):
     template_name = 'movies/list.html'
 
 
-class MovieCreator(SuccessMessageMixin, MockRequestMixin, ManageErrorResponseMixin, CreateView):
+class MovieCreator(SuccessMessageMixin, MockRequestMixin,
+                   ManageResponseErrorMixin, CreateView):
     model = Movie
     form_class = MovieFrom
     template_name = 'movies/new_movie.html'
@@ -28,7 +29,8 @@ class MovieCreator(SuccessMessageMixin, MockRequestMixin, ManageErrorResponseMix
     form_type = 'POST'
 
 
-class MovieEdit(SuccessMessageMixin, MockRequestMixin, ManageErrorResponseMixin, UpdateView):
+class MovieEdit(SuccessMessageMixin, MockRequestMixin,
+                ManageResponseErrorMixin, UpdateView):
     model = Movie
     form_class = MovieFrom
     template_name = 'movies/edit_movie.html'
@@ -48,7 +50,9 @@ def movieRemover(request, id_):
         return JsonResponse({'message': 'Success'}, status=204)
 
 
-class LendCreator(SuccessMessageMixin, MockRequestMixin, ManageErrorResponseMixin, CreateView):
+class LendCreator(SuccessMessageMixin, MockRequestMixin,
+                  ManageResponseErrorMixin, CreateView):
+    
     model = Rentals
     form_class = LendsForm
     template_name = 'movies/new_lend.html'
@@ -64,7 +68,9 @@ class LendsList(ListView):
     template_name = 'movies/lends.html'
 
 
-class LendEdit(SuccessMessageMixin, MockRequestMixin, ManageErrorResponseMixin, UpdateView):
+class LendEdit(SuccessMessageMixin, MockRequestMixin,
+               ManageResponseErrorMixin, UpdateView):
+    
     model = Rentals
     template_name = 'movies/edit_lend.html'
     form_class = LendsForm
