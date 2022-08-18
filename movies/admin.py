@@ -16,9 +16,6 @@ class RentalsAdmin(admin.ModelAdmin):
     
     def movie(self, obj, *args, **kwargs):
         return obj.movie_id.name
-    
 
-admin.site.register(Movie, MovieAdmin)    
-admin.site.register(Rentals, RentalsAdmin)    
 
     

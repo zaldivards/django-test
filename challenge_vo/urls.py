@@ -17,6 +17,12 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include(('movies.urls', 'movies'), namespace="movies"))
+    path('movies/', include(('movies.urls', 'movies'), namespace="movies")),
+    path('admin/', admin.site.urls, name='admin')
 ]
+
+
+admin.site.site_header = "Welcome to the user admin portal"
+admin.site.site_title = "UMSRA Admin Portal"
+admin.site.index_title = "User admin portal"
+admin.site.site_url='/movies/'
