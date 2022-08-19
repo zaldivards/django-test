@@ -27,7 +27,7 @@ schema_view = get_schema_view(
       default_version='v1',
       description="Open api test",
       terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="herrerachristian@gmail.com"),
+      contact=openapi.Contact(email="herrerachristian1897@gmail.com"),
       license=openapi.License(name="BSD License"),
    ),
    public=True,
